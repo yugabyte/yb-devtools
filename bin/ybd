@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+# Copyright (c) Yugabyte, Inc.
+set -uo pipefail
+
+git_root=$( git rev-parse --show-toplevel 2>/dev/null )
+set -e
+
+yb_build_script=$git_root/yb_build.sh
+if [[ ! -x $yb_build_script ]]; then
+  yb_build_script=~/code/yugabyte/yb_build.sh
+fi
+
+set -x
+"$yb_build_script" "$@"
