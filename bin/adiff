@@ -4,7 +4,7 @@
 
 # This script runs "arc diff" with the last commit's message as the diff update message.
 
-set -euo pipefail -x
+set -euo pipefail
 
 MSG=$( git log --format=%s -1 )
 if [[ -z $MSG ]]; then
@@ -12,4 +12,5 @@ if [[ -z $MSG ]]; then
   exit 1
 fi
 
+set -x
 arc diff -m "$MSG"
