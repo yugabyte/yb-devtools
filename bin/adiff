@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+# Author: Sergei Politov
+
+# This script runs "arc diff" with the last commit's message as the diff update message.
+
+set -euo pipefail -x
+
+MSG=$( git log --format=%s -1 )
+if [[ -z $MSG ]]; then
+  echo >&2 "Could not get the commit message"
+  exit 1
+fi
+
+arc diff -m "$MSG"
